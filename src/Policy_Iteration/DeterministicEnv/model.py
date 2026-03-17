@@ -1,11 +1,4 @@
 import torch
-import gymnasium as gym
-import matplotlib.pyplot as plt
-import numpy as np
-from utils.seed import set_seed
-
-set_seed(42)
-
 class Policy_Iteration_Det():
 
     def __init__(self,env,mdp,gamma:float = 0.95):
