@@ -12,13 +12,14 @@ def render_board(env):
     plt.show()
  
 def run(env, policy):
-    initial_state, _ = env.reset()
+    state, _ = env.reset()
     render_board(env)
 
     for _ in range(10):
-        action = int(policy[initial_state].item())
+        action = int(policy[state].item())
         observation, reward, flag, _, _ = env.step(action)
         render_board(env)
+        state = observation
  
         if flag:
             print(f"Episode finished with reward: {reward}")
@@ -27,7 +28,7 @@ def run(env, policy):
 if __name__ == "__main__":
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     train_env = gym.make('FrozenLake-v1', map_name="4x4", is_slippery=False)
-    output = Policy_Iteration_Det(train_env, device)
+    output = Policy_Iteration_Det(train_env)
     policy, values = output.policy_iteration()
     print(f"Optimal Policy: {policy}")
     print(f"State Values:   {values}")

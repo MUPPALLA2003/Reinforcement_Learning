@@ -1,10 +1,9 @@
 import torch
 class Policy_Iteration_Det():
 
-    def __init__(self,env,mdp,gamma:float = 0.95):
+    def __init__(self,env,gamma:float = 0.95):
 
         self.env = env
-        self.mdp = mdp
         self.gamma = gamma
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         self.n_states = int(env.observation_space.n)
@@ -57,7 +56,7 @@ class Policy_Iteration_Det():
 
     def policy_iteration(self,max_iterations:int=1000):
 
-        policy = torch.randint(0,self.n_actions.n,(self.n_states,),device = self.device)
+        policy = torch.randint(0,self.n_actions,(self.n_states,),device = self.device)
 
         for _ in range(max_iterations):
 
