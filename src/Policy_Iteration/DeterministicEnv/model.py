@@ -21,16 +21,16 @@ class Policy_Iteration_Det():
 
         for _ in range(max_iterations):
 
-            param = 0
+            delta = 0
             
             for s in range(self.n_states):
 
                 V_copy = V[s].item()
                 action = policy[s].item()
                 V[s] = self.bellman_equation(s,action,V)
-                param = max(param, abs(V[s].item() - V_copy))
+                delta = max(delta, abs(V[s].item() - V_copy))
 
-            if param < tolerence:
+            if delta < tolerence:
                 break
 
         return V
@@ -53,7 +53,7 @@ class Policy_Iteration_Det():
             new_policy[s] = best_action
 
         return new_policy
-
+    
     def policy_iteration(self,max_iterations:int=1000):
 
         policy = torch.randint(0,self.n_actions,(self.n_states,),device = self.device)
