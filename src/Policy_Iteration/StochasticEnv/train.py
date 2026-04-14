@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 from utils.seed import set_seed
 from src.Policy_Iteration.StochasticEnv.model import PolicyIterationStoc
 
+set_seed(42)
+
 plt.ion()  
 
 def render_board(env):
