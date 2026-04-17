@@ -1,6 +1,6 @@
 import torch
 
-class ValueIterationDet():
+class ValueIterationStoc():
 
     def __init__(self,env,gamma:float = 0.95):
 
